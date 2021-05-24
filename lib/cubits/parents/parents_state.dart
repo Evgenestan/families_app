@@ -19,3 +19,5 @@ class ParentLoadedParentState extends ParentsState {
   ParentLoadedParentState(this.parent);
   final Parent parent;
 }
+
+class ChildAddedParentState extends ParentsState {}

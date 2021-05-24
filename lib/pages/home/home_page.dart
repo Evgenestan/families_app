@@ -5,6 +5,7 @@ import 'package:families_app/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yalo_assets/lib.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,10 +40,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _parentsListBuilder() {
-    return BlocBuilder<ParentsCubit, ParentsState>(
-      builder: (_, state) => Column(
-        children: _parentCubit.parents.map(_parentBuilder).toList(growable: false),
+  Widget _buildEmptyPage() {
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(50),
+      child: Text(
+        'Ваш список пуст.\nЧтобы начать работу с приложением, добавьте родителя',
+        style: Theme.of(context).textTheme.headline2,
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -57,16 +62,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          _parentsListBuilder(),
-        ],
+      appBar: AppBar(
+        title: Text('Список родителей', style: Theme.of(context).textTheme.headline1),
       ),
+      body: BlocBuilder<ParentsCubit, ParentsState>(builder: (context, snapshot) {
+        if (_parentCubit.parents.isEmpty) {
+          return _buildEmptyPage();
+        }
+        return ListView(
+          physics: const BouncingScrollPhysics(),
+          children: _parentCubit.parents.map(_parentBuilder).toList(growable: false),
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed(Routes.to.addParent()),
-        child: const Icon(Icons.add),
+        child: Container(
+          margin: const EdgeInsets.all(5),
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(Assets.addIconS),
+                fit: BoxFit.fill,
+              )),
+        ),
       ),
     );
   }

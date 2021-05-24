@@ -1,18 +1,18 @@
   import 'package:flutter/services.dart';
   enum Asset {
       _stub,
-    intl,
-
+    
 }
 
 final Map<Asset, String> _assetEnumMap = {
-Asset.intl: 'assets/localizations/ru/intl.yaml',
 
 };
 
 class Assets {
-String get intl => intlS;
-static const String intlS = 'assets/localizations/ru/intl.yaml';
+String get addIcon => addIconS;
+static const String addIconS = 'assets/icons/add_icon.png';
+String get addChildIcon => addChildIconS;
+static const String addChildIconS = 'assets/icons/add_child_icon.png';
     final Map<Asset, String> _preloadedAssets = Map();
     bool isPreloaded = false;
     Future<bool> preloadAssets() async {

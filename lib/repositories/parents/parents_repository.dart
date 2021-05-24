@@ -38,5 +38,7 @@ class ParentsRepositoryImpl implements ParentsRepository {
   int get getNextParentId => _parents.isEmpty ? 0 : _parents.last.id + 1;
 
   @override
-  Future<Parent> getParentById(int id) => _parentsService.getParentById(id);
+  Future<Parent> getParentById(int id) {
+    return _parentsService.getParentById(id);
+  }
 }

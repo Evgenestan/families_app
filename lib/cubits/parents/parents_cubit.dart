@@ -10,7 +10,7 @@ class ParentsCubit extends Cubit<ParentsState> {
         super(InitialParentState());
   final ParentsRepository _parentsRepository;
 
-  final List<Parent> parents = [];
+  final Set<Parent> parents = {};
 
   Future<void> loadParents() async {
     emit(LoadingParentState());
@@ -41,5 +41,12 @@ class ParentsCubit extends Cubit<ParentsState> {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> addChildToParent({required int parentId, required int childId}) async {
+    final parent = await _parentsRepository.getParentById(parentId);
+    parent.children.add(childId);
+    await _parentsRepository.addParent(parent);
+    emit(ChildAddedParentState());
   }
 }

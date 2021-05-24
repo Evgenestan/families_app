@@ -4,7 +4,7 @@ import 'package:families_app/services/children/children_service.dart';
 abstract class ChildrenRepository {
   Future<List<Child>> getChildren(List<int> ids);
   Future<void> addChild(Child child);
-  int get getNextChildId;
+  Future<int> get getNextChildId;
 }
 
 class ChildrenRepositoryImpl implements ChildrenRepository {
@@ -18,5 +18,5 @@ class ChildrenRepositoryImpl implements ChildrenRepository {
   Future<List<Child>> getChildren(List<int> ids) async => _childrenService.getChildren(ids);
 
   @override
-  int get getNextChildId => _parents.isEmpty ? 0 : _parents.last.id + 1;
+  Future<int> get getNextChildId => _childrenService.getNextChildId();
 }

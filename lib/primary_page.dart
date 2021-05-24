@@ -43,6 +43,7 @@ class _PrimaryPageState extends State<PrimaryPage> {
           ),
           textTheme: const TextTheme(
             headline1: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            headline2: TextStyle(fontSize: 24.0, color: Colors.grey, fontWeight: FontWeight.bold),
             headline6: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             bodyText2: TextStyle(fontSize: 16.0, color: Colors.black87),
             bodyText1: TextStyle(fontSize: 14.0, color: Colors.white),

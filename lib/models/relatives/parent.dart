@@ -11,7 +11,7 @@ class Parent {
     required this.dob,
     required this.position,
     this.id = -1,
-    this.children = const [],
+    required this.children,
   });
 
   Parent copyWith({

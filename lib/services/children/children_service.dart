@@ -17,5 +17,15 @@ class ChildrenService {
     return children;
   }
 
+  Future<int> getNextChildId() async {
+    try {
+      final child = await _hiveStorage.getLastChild();
+      return child.id + 1;
+    } catch (e) {
+      print(e);
+    }
+    return 0;
+  }
+
   Future<void> addChild(Child child) async => _hiveStorage.addChild(child);
 }

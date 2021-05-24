@@ -35,12 +35,15 @@ class HiveStorage with Boxes {
     return box.get(id);
   }
 
-  Future<Iterable<Child>> getChildren() async {
+  Future<Child> getLastChild() async {
     final box = _boxes[Child];
     if (box == null) {
       throw Exception('Child is unregistered in HiveStorage');
     }
-    return box.values.cast();
+    if (box.values.isEmpty) {
+      throw Exception('Child is empty');
+    }
+    return box.values.last;
   }
 
   Future<Child?> getChild(int id) async {

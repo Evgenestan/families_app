@@ -10,3 +10,13 @@ class LoadedChildrenState extends ChildrenState {
   LoadedChildrenState(this.children);
   final List<Child> children;
 }
+
+class ChildAddedChildrenState extends ChildrenState {
+  ChildAddedChildrenState(this.id);
+  final int id;
+}
+
+class InputErrorChildrenState extends ChildrenState {
+  InputErrorChildrenState(this.error);
+  final String error;
+}
